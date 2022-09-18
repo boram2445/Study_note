@@ -3,6 +3,10 @@ const redux = require("redux");
 const createStore = redux.createStore;
 const bindActionCreators = redux.bindActionCreators;
 const combineReducers = redux.combineReducers;
+const applyMiddleware = redux.applyMiddleware;
+
+const reduxLogger = require("redux-logger");
+const logger = reduxLogger.createLogger();
 
 const CAKE_ORDERED = "CAKE_ORDERED";
 const CAKE_RESTOCKED = "CAKE_RESTOCKED";
@@ -98,12 +102,12 @@ const rootReducer = combineReducers({
   iceCream: iceCreamReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 console.log("Initial State", store.getState());
 //state가 변경될때마다 기록 - 케이크 갯수 기록
-const unsubscribe = store.subscribe(() =>
-  console.log("update state", store.getState())
-);
+// const unsubscribe = store.subscribe(() =>
+//   // console.log("update state", store.getState())
+// );
 //dispatch 메서드로 action에 접근하고 store에 요청을 보낸다 - 케이크 구매
 // store.dispatch(orederCake());
 // store.dispatch(orederCake());
