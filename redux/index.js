@@ -91,6 +91,12 @@ const iceCreamReducer = (state = initialIceCreamState, action) => {
         ...state,
         numOfIceCream: state.numOfIceCream + action.payload,
       };
+    //케이크를 주문하면 아이스크림 무료로 1개씩 지급
+    case CAKE_ORDERED:
+      return {
+        ...state,
+        numOfIceCream: state.numOfIceCream--,
+      };
     default:
       return state;
   }
