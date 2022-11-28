@@ -1,4 +1,8 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 // import { sub } from "date-fns";
 
@@ -8,6 +12,7 @@ const initialState = {
   posts: [],
   status: "idle",
   error: null,
+  count: 0,
 };
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
@@ -69,6 +74,9 @@ const postsSlice = createSlice({
       if (existingPost) {
         existingPost.reactions[reaction]++;
       }
+    },
+    increaseCount(state) {
+      state.count = state.count + 1;
     },
   },
   extraReducers(builder) {
@@ -137,10 +145,17 @@ const postsSlice = createSlice({
 export const selectAllPosts = (state) => state.posts.posts;
 export const getPostsStatus = (state) => state.posts.status;
 export const getPostsError = (state) => state.posts.error;
+//하나 선택하는 것은 get으로 이름을 통일하자.
+export const getCount = (state) => state.posts.count;
 
 export const selectPostById = (state, postId) =>
   state.posts.posts.find((post) => post.id === postId);
 
-export const { reactionAdded } = postsSlice.actions;
+export const selectPostByUser = createSelector(
+  [selectAllPosts, (state, userId) => userId],
+  (posts, userId) => posts.filter((post) => post.userId === userId)
+);
+
+export const { increaseCount, reactionAdded } = postsSlice.actions;
 
 export default postsSlice.reducer;
