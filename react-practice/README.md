@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+## 1. 배운점
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 1) Yarn berry 셋팅하기
 
-## Available Scripts
+### 2) 좋은 컴포넌트란?
 
-In the project directory, you can run:
+- `재사용성` : 반복적으로 사용되는 부분이 있다면 컴포넌트화 하자. 사용하는 곳에서 컴포넌트의 기능을 변경할 수 있도록 하면 더욱 재사용성이 높아진다.
+- `단일책임` : 재사용하지 않는 컴포넌트이더라도 분리하자. 한 컴포넌트 내에 너무 많은 로직이 들어있는 것은 좋지 않다.
+  <br/>
+- 하위 컴포넌트를 다른 컴포넌트에서도 단독으로 사용할때 문제가 없으면 재사용성이 좋다고 판단 가능하다.
+- 처음부터 너무 완벽하게 모든 것을 컴포넌트화 하려고 하지 말자. 컴포넌트를 만들다가 더 필요하다고 생각하면 컴포넌트를 나누는 작업을 하면 된다!
 
-### `yarn start`
+### 3) 이벤트 핸들러
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **네이밍**
+  - props의 경우 보통 onClick 처럼 접두사 `on`을 붙인다.
+  - Function name의 경우 handleClick 처럼 접두사 `handle`을 붙인다.
+- **SyntheticEvent**
+  - 브라우저마다 이벤트 종류, 이름, 처리방식이 다르기 때문에 react는 모든 이벤트를 동일하게 처리하기 위해 SyntheticEvent 객체로 한단계 감싸서 전달한다.
+- **이벤트 종류**
+  [React 공식 문서](https://ko.reactjs.org/docs/events.html)
+  [참고 블로그](https://abangpa1ace.tistory.com/129)
