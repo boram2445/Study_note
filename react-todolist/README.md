@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+## 배운점 📚
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### 1) 아이템 추가 컴포넌트 만들기 (form 활용하기)
 
-## Available Scripts
+1. 컴포넌트별로 파일을 구분지어서 jsx파일과 css파일을 묶자.
+2. `독립적인 컴포넌트`가 되도록 최대한 노력하자
+   => 하위 컴포넌트에서 처리할 수 있는 것들은 하위 컴포넌트에서만 처리하는 것이 좋다.(ex. input 값이 유효한지 검사하는 것은 addTodo 컴포넌트에서 담당, 검증된 값을 상위 컴포넌트로 넘겨준다.)
+3. form 태그는 input과 submit 버튼이 들어있으면 된다.
+   => addTodo 컴포넌트로 내려주자
+   => 그럼 handldeSubmit 함수도 하위로 내려줄 수 있다!
+4. ref.current.value = "" 하지않고 setState값을 비워주면 input 입력후에 값을 비울 수 있는 동일한 효과를 가져올 수 있다.
+5. `if (!text.trim()) return;` 이렇게 해주어야, text입력이 안되었을때 뿐만 아니라, space입력만 되었을때도 return해 줄 수 있다.
+6. text.trim()은 원본을 수정한다!
 
-In the project directory, you can run:
+```
+import React, { useState, useRef } from "react";
+import styles from "./addTodo.module.css";
 
-### `yarn start`
+export default function AddTodo({ onAdd }) {
+  const [text, setText] = useState(undefined);
+  // const inputRef = useRef();
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  const handleChange = (e) => setText(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!text.trim()) return;
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    onAdd({ id: Math.random(), checked: false, text: text.trim() });
+    // inputRef.current.value = "";
+    // inputRef.current.focus();
+    setText("");
+  };
 
-### `yarn test`
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.wrapper}>
+        <input
+          type="text"
+          placeholder="Add Todo"
+          onChange={handleChange}
+          value={text}
+          // ref={inputRef}
+        />
+        <button type="submit">Add</button>
+      </div>
+    </form>
+  );
+}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```

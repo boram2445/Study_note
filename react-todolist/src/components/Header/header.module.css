@@ -9,6 +9,12 @@
   border-radius: 15px 15px 0 0;
 }
 
+.header span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .header svg {
   color: var(--color-darkGrey);
   cursor: pointer;

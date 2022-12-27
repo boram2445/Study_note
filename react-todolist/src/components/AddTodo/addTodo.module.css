@@ -1,11 +1,11 @@
-.footer {
+.form {
   padding: 1rem;
   background-color: var(--color-brightGrey);
   display: flex;
   border-radius: 0 0 15px 15px;
 }
 
-.footer .wrapper {
+.form .wrapper {
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
