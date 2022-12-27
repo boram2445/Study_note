@@ -1,0 +1,39 @@
+.header {
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  background-color: var(--color-brightGrey);
+  border-bottom: 1px solid var(--color-grey);
+  border-radius: 15px 15px 0 0;
+}
+
+.header svg {
+  color: var(--color-darkGrey);
+  cursor: pointer;
+}
+
+.header svg:hover {
+  opacity: 0.8;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  font-weight: 500;
+  color: var(--color-orange);
+}
+
+.nav li {
+  cursor: pointer;
+}
+
+.nav li:hover {
+  opacity: 0.8;
+}
+
+.nav .focused {
+  border-bottom: 2px solid var(--color-grey);
+  font-weight: 700;
+}

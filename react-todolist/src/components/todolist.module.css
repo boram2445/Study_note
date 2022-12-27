@@ -1,0 +1,6 @@
+.container {
+  box-shadow: 16px 14px 5px -5px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 16px 14px 5px -5px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 16px 14px 5px -5px rgba(0, 0, 0, 0.12);
+  min-width: 400px;
+}

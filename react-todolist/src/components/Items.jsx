@@ -1,12 +1,21 @@
 import React from "react";
 import Item from "./Item";
-import { BsTrash } from "react-icons/bs";
+import styles from "./items.module.css";
 
-export default function Items() {
+export default function Items({ items, onDelete, onCheck }) {
   return (
-    <div>
-      <Item />
-      <BsTrash />
-    </div>
+    <ul className={styles.list}>
+      {/* key를 이렇게 부여해 주면 안되나 */}
+      {items.map((item) => (
+        <Item
+          label={item.label}
+          checked={item.checked}
+          id={item.id}
+          key={item.id}
+          onDelete={onDelete}
+          onCheck={onCheck}
+        />
+      ))}
+    </ul>
   );
 }
