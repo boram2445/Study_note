@@ -19,26 +19,21 @@ export default function ItemForm() {
     setItems(newArr);
     localStorage.setItem("items", JSON.stringify(newArr));
   };
+  const handleDelete = (deleted) => {
+    const newArr = items.filter((item) => item.id !== deleted.id);
+    setItems(newArr);
+    localStorage.setItem("items", JSON.stringify(newArr));
+  };
+  const handleCheck = (updated) => {
+    const newArr = items.map((item) =>
+      item.id === updated.id ? updated : item
+    );
+    setItems(newArr);
+    localStorage.setItem("items", JSON.stringify(newArr));
+  };
 
   const handleMode = (mode) => {
     setMode(mode === "day" ? "night" : "day");
-  };
-
-  const handleDelete = (id) => {
-    const newArr = items.filter((item) => item.id !== id);
-    setItems(newArr);
-    localStorage.setItem("items", JSON.stringify(newArr));
-  };
-
-  const handleCheck = (id, checked) => {
-    const newArr = items.map((item) => {
-      if (item.id === id) {
-        return { ...item, checked };
-      }
-      return item;
-    });
-    setItems(newArr);
-    localStorage.setItem("items", JSON.stringify(newArr));
   };
 
   const handleNav = (value) => {
@@ -55,7 +50,7 @@ export default function ItemForm() {
   }
 
   return (
-    <article className={styles.container}>
+    <section className={styles.container}>
       <Header
         navFocus={navFocus}
         handleNav={handleNav}
@@ -64,8 +59,7 @@ export default function ItemForm() {
       />
       <Items items={content} onDelete={handleDelete} onCheck={handleCheck} />
       {/* submit 버튼이 하위 컴포넌트에 있어도 onSubmit이작동한다. */}
-
       <AddTodo onAdd={handleAdd} />
-    </article>
+    </section>
   );
 }

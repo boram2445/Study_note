@@ -49,3 +49,45 @@ export default function AddTodo({ onAdd }) {
 
 
 ```
+
+### 2. 아이템 삭제 컴포넌트
+
+1. 불필요한 state는 없애주자.
+   => check 상태는 상위 컴포넌트에서 data로 받아오는 것인데 왜 하위 컴포넌트에서 굳이 state값을 만들어서 그걸 활용하고 있니 :>
+
+```
+import React, { useState } from "react";
+import { BsTrash } from "react-icons/bs";
+import styles from "./item.module.css";
+
+export default function Item({ item, onDelete, onCheck }) {
+// const [itemChecked, setItemChecked] = useState(item.checked);
+
+const handleChecked = () => {
+  // setItemChecked((itemChecked) => !itemChecked);
+  onCheck({ ...item, checked: !item.checked });
+};
+
+const handleDelete = () => {
+  onDelete(item);
+};
+
+return (
+  <li className={styles.item}>
+    <label className={styles[`${item.checked ? "checked-label" : "label"}`]}>
+      <input
+        name={item.text}
+        type="checkbox"
+        onChange={handleChecked}
+        checked={item.checked}
+      />
+      {item.text}
+    </label>
+    <span className={styles.trash} onClick={handleDelete}>
+      <BsTrash />
+    </span>
+  </li>
+);
+}
+
+```

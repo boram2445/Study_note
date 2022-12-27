@@ -1,29 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { BsTrash } from "react-icons/bs";
 import styles from "./item.module.css";
 
-export default function Item({ label, checked, id, onDelete, onCheck }) {
-  const [itemChecked, setItemChecked] = useState(checked);
-
-  const handleChecked = () => {
-    setItemChecked((itemChecked) => !itemChecked);
-    onCheck(id, !checked);
-  };
-
-  const handleDelete = () => {
-    onDelete(id);
-  };
+export default function Item({ item, onDelete, onCheck }) {
+  const handleChange = () => onCheck({ ...item, checked: !item.checked });
+  const handleDelete = () => onDelete(item);
 
   return (
     <li className={styles.item}>
-      <label className={styles[`${itemChecked ? "checked-label" : "label"}`]}>
+      <label className={styles[`${item.checked ? "checked-label" : "label"}`]}>
         <input
-          name={label}
+          name={item.text}
           type="checkbox"
-          onChange={handleChecked}
-          checked={itemChecked}
+          onChange={handleChange}
+          checked={item.checked}
         />
-        {label}
+        {item.text}
       </label>
       <span className={styles.trash} onClick={handleDelete}>
         <BsTrash />
