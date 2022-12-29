@@ -2,22 +2,23 @@ import React from "react";
 import { BsFillMoonFill, BsSun } from "react-icons/bs";
 import styles from "./header.module.css";
 
-export default function Header({ navFocus, handleNav, handleMode, mode }) {
-  const navType = ["All", "Active", "Completed"];
-
+export default function Header({
+  filters,
+  filter,
+  onChangeFilter,
+  mode,
+  onChangeMode,
+}) {
   return (
     <header className={styles.header}>
-      <span onClick={() => handleMode(mode)}>
+      <span onClick={() => onChangeMode(mode)}>
         {mode === "day" ? <BsFillMoonFill /> : <BsSun />}
       </span>
+
       <ul className={styles.nav}>
-        {navType.map((nav, index) => (
-          <li
-            className={styles[`${navFocus === nav ? "focused" : ""}`]}
-            onClick={() => handleNav(nav)}
-            key={index}
-          >
-            {nav}
+        {filters.map((item, index) => (
+          <li className={`${filter === item && styles.focused}`} key={index}>
+            <button onClick={() => onChangeFilter(item)}>{item}</button>
           </li>
         ))}
       </ul>

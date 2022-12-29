@@ -91,3 +91,49 @@ return (
 }
 
 ```
+
+### 3. 필터 적용하기
+
+1. header는 Todolist 컴포넌트에 속하면 안된다 App 컴포넌트로 올려주자
+2. App 컴포넌트에서 filter에 대한 정보들이 들어있도록 하자
+3. 동적으로 변하는 list값이 아니라, 고정된 값일 경우 index를 사용해도 된다. (ex. nav )
+4. 클릭되는 값은 최대한 button 태그를 사용하자
+5. 함수 내부의 특정 값이 필요하지 않은 경우라면 컴포넌트 밖으로 함수를 빼내서 선언하자.내부에 작성하게 되면 컴포넌트가 re-render 될때마다 계속 불필요하게 재선언(재할당)된다.
+
+### 4. css
+
+1. 최상위 App을 꾸미고 싶다면 `#root`에 적용해도 된다.
+2. border-radius를 사용했는데 자식 요소떄문에 적용이 안된다면, 부모요소에 `overflow:hidden`을 사용하자
+3. `text-transform:capitalize` 를사용하면, css로 text 첫글자를 대문자로 변경할 수 있다.
+4. `opacity:0.8`로 해두고 hover 되었을때 `opacity:1`로 두면 선택된 것만 진하게 보이도록 할 수 있다.
+5. postcss에서 className을 경우에 따라 제거하거나 붙이고 싶을 경우에는 아래처럼 하면 된다.
+
+```
+<button
+  classNmae={`${styles.filter} ${filter===value && styles.selected} `}
+>{value}</button>
+```
+
+6. `filter:brightness(-%)` 속성을 사용하면 색상을 더 밝게 할 수 있다.
+7. postcss는 각 파일별로 모듈로 관리해 주기 때문에, className을 복잡하게 할 필요없다!
+   (이전에는 header-container 이런식으로 className을 주었는데 사실 이럴 필요가 없는 것이었다,,)
+8. `flex` 속성은 flex-grow, flex-shrink, flex-basis를 한번에 쓸 수 있는 속성이다. 이전에는 두 요소 배치를 하고 싶으면 wrapper로 감싸주었는데 그럴 필요없이 자식요소에 flex 속성을 쓰면 자동 배치가 된다 (신기방기,,)
+
+=> 3개의 자식 요소가 있는 상황에서 부모 요소에서 `space-between`이 적용되 있는 상태이면 3개가 모두 떨어지고 가운데 요소가 정가운데 위치하게 되는데, 가운데 요소가 꽉 차게 하고 싶다면 `flex:1 1 auto;`를 써주면 된다.👍
+
+```
+/* .form .wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+} */ => 이렇게 그리드로 사용해줄 필요가 없다
+
+.input {
+  flex: 1 0 auto;
+  padding: 1.1rem;
+  border: 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px 0 0 10px;
+}
+```

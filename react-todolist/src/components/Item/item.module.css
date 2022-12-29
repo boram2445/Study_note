@@ -38,12 +38,12 @@
   justify-content: center;
 }
 
+.trash :hover {
+  transition: all 100ms ease-out;
+  transform: rotate(20deg);
+}
+
 .trash svg {
   color: var(--color-darkGrey);
   width: 25px;
-}
-
-.trash :hover {
-  transition: all 100ms ease-in;
-  transform: rotate(20deg);
 }

@@ -15,15 +15,16 @@ export default function AddTodo({ onAdd }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.wrapper}>
-        <input
-          type="text"
-          placeholder="Add Todo"
-          onChange={handleChange}
-          value={text}
-        />
-        <button type="submit">Add</button>
-      </div>
+      <input
+        className={styles.input}
+        type="text"
+        placeholder="Add Todo"
+        onChange={handleChange}
+        value={text}
+      />
+      <button type="submit" className={styles.button}>
+        Add
+      </button>
     </form>
   );
 }
