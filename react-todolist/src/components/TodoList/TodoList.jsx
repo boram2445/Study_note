@@ -1,34 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Items from "../Items/Items";
 import AddTodo from "../AddTodo/AddTodo";
 
-// form 컴포넌트를 어떤식으로 쪼개야 하는지 모르겠다.
-//이렇게 상위 컴포넌트에서 handleValue를 해도 되는걸까
+// form 컴포넌트를 어떤식으로 쪼개야 하는지 모르겠다. - 최대한 내려야 한다.
 export default function TodoList({ filter }) {
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("items")) || []
-  ); //localstorage가 변경될때마다 state값을 다시 렌더링 할 수 없을까
+  const [items, setItems] = useState(readTodosFromLocalStorage); //localstorage가 변경될때마다 state값을 다시 렌더링 할 수 없을까
 
-  const handleAdd = (todo) => {
-    const newArr = [...items, todo];
-
-    setItems(newArr);
-    localStorage.setItem("items", JSON.stringify(newArr));
-  };
-  const handleDelete = (deleted) => {
-    const newArr = items.filter((item) => item.id !== deleted.id);
-    setItems(newArr);
-    localStorage.setItem("items", JSON.stringify(newArr));
-  };
-  const handleCheck = (updated) => {
-    const newArr = items.map((item) =>
-      item.id === updated.id ? updated : item
-    );
-    setItems(newArr);
-    localStorage.setItem("items", JSON.stringify(newArr));
-  };
-
+  const handleAdd = (todo) => setItems([...items, todo]);
+  const handleDelete = (deleted) =>
+    setItems(items.filter((item) => item.id !== deleted.id));
+  const handleCheck = (updated) =>
+    setItems(items.map((item) => (item.id === updated.id ? updated : item)));
   const filtered = getFilteredItems(filter, items);
+
+  useEffect(() => {
+    localStorage.items = JSON.stringify(items);
+  }, [items]);
 
   return (
     <section>
@@ -39,7 +26,12 @@ export default function TodoList({ filter }) {
   );
 }
 
-const getFilteredItems = (filter, items) => {
+function readTodosFromLocalStorage() {
+  const todos = localStorage.items;
+  return todos ? JSON.parse(todos) : [];
+}
+
+function getFilteredItems(filter, items) {
   if (filter === "Active") {
     return items.filter((item) => !item.checked);
   } else if (filter === "Completed") {
@@ -47,4 +39,4 @@ const getFilteredItems = (filter, items) => {
   } else {
     return items;
   }
-};
+}
