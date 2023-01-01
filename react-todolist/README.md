@@ -137,3 +137,28 @@ return (
   border-radius: 10px 0 0 10px;
 }
 ```
+
+### 5. 다크모드 만들기 (width useContext)
+
+- 스스로 해본 방법은, 색상을 변경해야하는 컴포넌트마다 className에 .dark를 붙여주는 방식이었다. (비효율적이라는 생각이 구현하면서도 들었다🤔)
+- 엘리쌤이 한 방법은, localStorage에 darkMode인지를 저장하고, 전체 html에 class를 지정하는 방식이다.
+- html.dark일때만 원하는 색상 변수 값을 새로운 값으로 변경해 주면된다. (이방식으로 하면 따로 컴포넌트에서 설정해 주는 것 없이 간편하게 색상을 변경할 수 있다😚👍)
+
+```
+:root {
+  /* color */
+  --color-main: #ef6c00;
+  --color-point: #e0e0e0;
+  --color-white: #ffffff;
+  --color-bg-light: #ffffff;
+  --color-bg: #f4f4f4;
+  --color-darkGrey: #37474f;
+  --color-font: #37474f;
+}
+
+html.dark {
+  --color-bg: #020628;
+  --color-bg-light: #13193f;
+  --color-font: #ffffff;
+}
+```

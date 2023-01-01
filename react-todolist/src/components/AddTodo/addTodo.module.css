@@ -1,7 +1,11 @@
 .form {
   padding: 1rem;
-  background-color: var(--color-brightGrey);
+  background-color: var(--color-bg);
   display: flex;
+}
+
+.form.dark {
+  background-color: var(--color-darkBlue);
 }
 
 .input {
@@ -16,7 +20,7 @@
 .button {
   padding: 0.6rem 1rem;
   border: 0;
-  background-color: var(--color-orange);
+  background-color: var(--color-main);
   color: var(--color-white);
   cursor: pointer;
   border-radius: 0 10px 10px 0;

@@ -1,12 +1,18 @@
 :root {
   /* color */
-  --color-orange: #ef6c00;
+  --color-main: #ef6c00;
+  --color-point: #e0e0e0;
   --color-white: #ffffff;
-  --color-brightGrey: #f4f4f4;
-  --color-grey: #e0e0e0;
+  --color-bg-light: #ffffff;
+  --color-bg: #f4f4f4;
   --color-darkGrey: #37474f;
-  --color-lightDarkBlue: #08154f;
-  --color-darkBlue: #020628;
+  --color-font: #37474f;
+}
+
+html.dark {
+  --color-bg: #020628;
+  --color-bg-light: #13193f;
+  --color-font: #ffffff;
 }
 
 body {

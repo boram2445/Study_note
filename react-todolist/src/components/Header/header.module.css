@@ -1,6 +1,7 @@
 button {
   cursor: pointer;
   border: 0;
+  background-color: transparent;
 }
 
 .header {
@@ -9,24 +10,26 @@ button {
   justify-content: space-between;
   align-items: center;
   font-size: 1.4rem;
-  background-color: var(--color-brightGrey);
-  border-bottom: 1px solid var(--color-grey);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-point);
 }
 
-.header span {
+.header button {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.4rem;
 }
 
 .header svg {
   color: var(--color-darkGrey);
   cursor: pointer;
-  opacity: 0.8;
 }
 
 .header svg:hover {
-  opacity: 1;
+  color: var(--color-main);
+  opacity: 0.8;
+  transition: all 150ms ease-out;
 }
 
 .nav {
@@ -35,17 +38,16 @@ button {
 }
 
 .nav li button {
-  color: var(--color-orange);
+  color: var(--color-main);
   font-weight: 500;
   font-size: 1.2rem;
-  opacity: 0.8;
 }
 
 .nav li button:hover {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .nav .focused button {
-  border-bottom: 2px solid var(--color-grey);
+  border-bottom: 2px solid var(--color-point);
   font-weight: 700;
 }
