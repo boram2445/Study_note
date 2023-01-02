@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NotFound from "./components/NotFound";
-import Home from "./components/Home";
-import Videos from "./components/Videos";
-import Root from "./components/Root";
-import VideoDetail from "./components/VideoDetail";
+import NotFound from "./RouterPractice/components/NotFound";
+import Home from "./RouterPractice/components/Home";
+import Videos from "./RouterPractice/components/Videos";
+import Root from "./RouterPractice/components/Root";
+import VideoDetail from "./RouterPractice/components/VideoDetail";
 
 const router = createBrowserRouter([
   {
