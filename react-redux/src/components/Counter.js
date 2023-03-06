@@ -1,28 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
+import {
+  increment,
+  decrement,
+  increase,
+  toggleCounter,
+} from "../store/counterSlice";
 
 import classes from "./Counter.module.css";
 
 const Counter = () => {
   const dispatch = useDispatch();
-  //useSelector는 redux가 관리하는 state를 받는다.
-  //이어서, 우리가 추출하려는 state값을 리턴하도록 한다.
-  const counter = useSelector((state) => state.counter);
-  const toggle = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const toggle = useSelector((state) => state.counter.showCounter);
 
   const incrementHandler = () => {
-    dispatch({ type: "INCREMENT" });
+    dispatch(increment());
   };
 
   const increaseHandler = () => {
-    dispatch({ type: "INCREASE", amount: 5 });
+    dispatch(increase(5));
   };
 
   const decrementHandler = () => {
-    dispatch({ type: "DECREMENT" });
+    dispatch(decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "TOGGLE" });
+    dispatch(toggleCounter());
   };
 
   return (
